@@ -78,4 +78,3 @@ function updateMalla() {
 }
 
 document.addEventListener('DOMContentLoaded', createMalla);
-
