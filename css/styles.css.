@@ -1,27 +1,59 @@
-#mall {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fce4ec;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #c2185b;
+    margin: 20px 0;
+}
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
 }
 
 .semestre {
-  background: #ffeaf2;
-  padding: 10px;
-  border-radius: 12px;
-  flex: 1;
-  min-width: 200px;
+    background: #f8bbd0;
+    padding: 10px;
+    border-radius: 12px;
+    min-width: 220px;
+}
+
+.semestre h2 {
+    text-align: center;
+    color: #880e4f;
 }
 
 .ramos {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .course {
-  padding: 10px;
-  background: #fcd6e3;
-  border: 2px solid #c94f7c;
-  border-radius: 8px;
-  cursor: pointer;
+    background: #fce4ec;
+    border: 2px solid #c2185b;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.course.locked {
+    background: #f8bbd0;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.course.completed {
+    background: #f48fb1;
+    text-decoration: line-through;
 }
