@@ -1,56 +1,45 @@
 body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #fce4ec;
-    color: #333;
+    font-family: Arial, sans-serif;
+    margin: 0;
 }
 
 h1 {
     text-align: center;
-    color: #c2185b;
     margin: 20px 0;
+    color: #c2185b;
 }
 
 .grid-container {
     display: flex;
     flex-wrap: wrap;
+    gap: 16px;
     justify-content: center;
-    gap: 20px;
-    padding: 20px;
 }
 
 .semestre {
     background: #f8bbd0;
+    border-radius: 10px;
     padding: 10px;
-    border-radius: 12px;
-    min-width: 220px;
+    width: 240px;
 }
 
 .semestre h2 {
     text-align: center;
-    color: #880e4f;
-}
-
-.ramos {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
 }
 
 .course {
     background: #fce4ec;
     border: 2px solid #c2185b;
-    border-radius: 8px;
     padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
-    text-align: center;
 }
 
 .course.locked {
-    background: #f8bbd0;
-    opacity: 0.5;
-    cursor: not-allowed;
+    opacity: 0.4;
+    cursor: default;
 }
 
 .course.completed {
