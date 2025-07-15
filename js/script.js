@@ -17,33 +17,47 @@ const dependencias = {
     "proyecto-3": ["proyecto-profesional"]
 };
 
-function marcar(id) {
-    const curso = document.getElementById(id);
-    if (curso.classList.contains("locked")) return;
+// Inicializa el estado de cursos como false (no aprobados)
+const estado = {};
 
-    curso.classList.toggle("completed");
-    actualizarDesbloqueos();
-}
+function inicializar() {
+    const cursos = document.querySelectorAll(".course");
+    cursos.forEach(curso => {
+        const id = curso.id;
+        estado[id] = false;
 
-function actualizarDesbloqueos() {
-    document.querySelectorAll(".course").forEach(curso => {
-        curso.classList.add("locked");
+        curso.addEventListener("click", () => {
+            if (!curso.classList.contains("locked")) {
+                estado[id] = !estado[id];
+                actualizarEstado();
+            }
+        });
     });
 
-    document.querySelectorAll(".completed").forEach(curso => {
-        curso.classList.remove("locked");
-        const siguientes = dependencias[curso.id];
-        if (siguientes) {
-            siguientes.forEach(sig => {
-                document.getElementById(sig).classList.remove("locked");
-            });
+    actualizarEstado();
+}
+
+function actualizarEstado() {
+    const cursos = document.querySelectorAll(".course");
+
+    cursos.forEach(curso => {
+        const id = curso.id;
+        curso.classList.remove("completed", "locked");
+
+        // Si está completado
+        if (estado[id]) {
+            curso.classList.add("completed");
+        } else {
+            // Si tiene prerequisitos, los revisamos
+            const bloqueadoPor = Object.keys(dependencias).filter(pre => dependencias[pre].includes(id));
+            const todosAprobados = bloqueadoPor.every(pre => estado[pre]);
+
+            if (bloqueadoPor.length && !todosAprobados) {
+                curso.classList.add("locked");
+            }
         }
     });
 }
 
-window.onload = () => {
-    document.querySelectorAll(".course").forEach(curso => {
-        curso.onclick = () => marcar(curso.id);
-    });
-    actualizarDesbloqueos();
-};
+window.addEventListener("DOMContentLoaded", inicializar);
+
